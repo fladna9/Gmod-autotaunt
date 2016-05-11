@@ -34,7 +34,7 @@ local function autoTauntInit( ply )
 		local autoTauntTimerName = autoTauntTimerNameBase .."-" .. ply:Nick()
 		-- Creation of the timer
 		timer.Create(autoTauntTimerName, timeBetweenTwoTaunts, howManyTimes, function() 
-			if(ply != nil && ply.Team() == TEAM_PROPS) then
+			if(ply != nil && ply:Team() == TEAM_PROPS) then
 				-- Generate a random number between 1 and maxTaunts
 				local tauntNumber = math.random(maxTaunts)
 				ply:ConCommand( "ph_taunt team_props " .. tauntNumber )
