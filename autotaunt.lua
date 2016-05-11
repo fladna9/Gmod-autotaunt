@@ -12,30 +12,37 @@
 -- IF YOU'RE NOT FAMILIAR WITH LUA, EDIT JUST BELOW THE SETTINGS FOR THE ADDON --
 
 -- Change here the time you want between 2 taunts
-timeBetweenTwoTaunts = 60
+local timeBetweenTwoTaunts = 60
 -- Change here how many times you want this auto taunt be be executed in a round
-howManyTimes = 5
+local howManyTimes = 5
 -- The number of taunts available. Can find with ph_tauntlist in console
-maxTaunts = 75
+local maxTaunts = 75
 
 -- END OF SETTINGS --
 
 
-autoTauntTimerName = "Francis_Auto_Taunt_Timer"
+local autoTauntTimerName = "Francis_Auto_Taunt_Timer"
 
 -- Main autoTaunt function
-local function autoTaunt( ply )
+local function autoTauntInit( ply )
+	-- Auto_Taunt callback
+	local function autoTaunt()
+		-- Generate a random number between 1 and maxTaunts
+		local tauntNumber = math.random(maxTaunts)
+		ply:ConCommand( "ph_taunt team_props " ..tauntNumber )
+		print( ply:Nick().. " has just auto taunted to help hunters !" )
+
+		-- Reset a timer for next time
+		timer.Create(autoTauntTimerName, timeBetweenTwoTaunts, howManyTimes, autoTaunt)
+	end
+
 	-- Auto_Taunt only if prop
 	if(ply:Team() == TEAM_PROPS) then
+		-- Initializing seed for random number
+		math.randomseed(os.time())
+
 		-- Creation of the timer
-		timer.Create(autoTauntTimerName, timeBetweenTwoTaunts, howManyTimes, function ()
-			-- Initializing seed for random number
-			math.randomseed(os.time())
-			-- Generate a random number between 1 and maxTaunts 
-			local tauntNumber = math.random(maxTaunts)
-			ply:ConCommand( "ph_taunt team_props " ..tauntNumber )
-			print( ply:Nick().. " has just auto taunted to help hunters !" )
-		end)
+		timer.Create(autoTauntTimerName, timeBetweenTwoTaunts, howManyTimes, autoTaunt)
 	end
 end
 
@@ -47,5 +54,5 @@ local function removeAutoTaunt( ply )
 end
 
 -- Add functions to hooks
-hook.Add("PlayerSpawn", "Player_Spawned_AutoTaunt", autoTaunt )
+hook.Add("PlayerSpawn", "Player_Spawned_AutoTaunt", autoTauntInit )
 hook.Add("PlayerDeath", "Player_Died_AutoTaunt", removeAutoTaunt )
