@@ -19,7 +19,7 @@ It also prints a line in the server console for each prop auto taunting.
 Make sure your server has the following addons : 
 * "Prop Hunt New Taunts" : http://steamcommunity.com/sharedfiles/filedetails/?id=272425836
 * "Prop Hunt Tauntpack Loader" : http://steamcommunity.com/sharedfiles/filedetails/?id=272852615
-* A Prop Hunt addon (tested on "Wolvin's: Enhanced Prop Hunt" : http://steamcommunity.com/sharedfiles/filedetails/?id=272852615 )
+* A Prop Hunt addon (tested on "Wolvin's: Enhanced Prop Hunt" : http://steamcommunity.com/sharedfiles/filedetails/?id=417565863 )
 
 Create missing directories and copy *autotaunt.lua* in 
 ```
