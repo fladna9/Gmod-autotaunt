@@ -31,7 +31,7 @@ math.randomseed(os.time())
 local function autoTauntInit( ply )
 	-- Auto_Taunt only if prop
 	if(ply != nil && ply:Team() == TEAM_PROPS) then
-		local autoTauntTimerName = autoTauntTimerBase .."-" .. ply:Nick()
+		local autoTauntTimerName = autoTauntTimerNameBase .."-" .. ply:Nick()
 		-- Creation of the timer
 		timer.Create(autoTauntTimerName, timeBetweenTwoTaunts, howManyTimes, function() 
 			if(ply != nil && ply.Team() == TEAM_PROPS) then
@@ -47,7 +47,7 @@ end
 -- Used to remove the timer on player death
 local function removeAutoTaunt( ply )
 	if(ply != nil && ply:Team() == TEAM_PROPS) then
-		local autoTauntTimerName = autoTauntTimerBase .. "-" .. ply:Nick()
+		local autoTauntTimerName = autoTauntTimerNameBase .. "-" .. ply:Nick()
 		timer.Remove(autoTauntTimerName)
 	end
 end
