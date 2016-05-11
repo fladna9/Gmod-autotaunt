@@ -25,25 +25,25 @@ autoTauntTimerName = "Francis_Auto_Taunt_Timer"
 
 -- Main autoTaunt function
 local function autoTaunt( ply )
-		-- Auto_Taunt only if prop
-        if(ply:Team() == TEAM_PROPS) then
-				-- Creation of the timer
-                timer.Create(autoTauntTimerName, timeBetweenTwoTaunts, howManyTimes, function ()
-						-- Initializing seed for random number
-						math.randomseed(os.time())
-						-- Generate a random number between 1 and maxTaunts 
-						local tauntNumber = math.random(maxTaunts)
-                        ply:ConCommand( "ph_taunt team_props " ..tauntNumber )
-                        print( ply:Nick().. " has just auto taunted to help hunters !" )
-                end)
-        end
+	-- Auto_Taunt only if prop
+	if(ply:Team() == TEAM_PROPS) then
+		-- Creation of the timer
+		timer.Create(autoTauntTimerName, timeBetweenTwoTaunts, howManyTimes, function ()
+			-- Initializing seed for random number
+			math.randomseed(os.time())
+			-- Generate a random number between 1 and maxTaunts 
+			local tauntNumber = math.random(maxTaunts)
+			ply:ConCommand( "ph_taunt team_props " ..tauntNumber )
+			print( ply:Nick().. " has just auto taunted to help hunters !" )
+		end)
+	end
 end
 
 -- Used to remove the timer on player death
 local function removeAutoTaunt( ply )
-        if(ply:Team() == TEAM_PROPS) then
-                timer.Remove(autoTauntTimerName)
-        end
+	if(ply:Team() == TEAM_PROPS) then
+		timer.Remove(autoTauntTimerName)
+	end
 end
 
 -- Add functions to hooks
