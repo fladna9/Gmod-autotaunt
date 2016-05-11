@@ -1,4 +1,6 @@
 # Garry's Mod Auto Taunt Addon project
+
+[![Join the chat at https://gitter.im/fladna9/Gmod-autotaunt](https://badges.gitter.im/fladna9/Gmod-autotaunt.svg)](https://gitter.im/fladna9/Gmod-autotaunt?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 A Garry's Mod lua script that makes props auto taunt
 
 As not any of these plugins where available on the Internet, decided to create it myself.
